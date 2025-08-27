@@ -37,7 +37,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange>
             <Navbar />
+              <main className="container mx-auto min-h-screen bg-background text-foreground">
             {children}
+                
+              </main>
           </ThemeProvider>
         </body>
       </html>
