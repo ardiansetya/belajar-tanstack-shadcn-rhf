@@ -1,7 +1,6 @@
 "use client";
 
-import { useProducts } from "@/hooks/useProducts";
-import { Product } from "@/types/products";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useProducts } from "@/hooks/useProducts";
+import { Product } from "@/types/products";
 import Image from "next/image";
 
 const ProductsPage = () => {
@@ -22,6 +22,11 @@ const ProductsPage = () => {
 
   return (
     <section className="">
+      <div className="flex justify-end items-center my-4">
+        <Button variant={"outline"}>
+          Add Product
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {productsData?.map((product: Product) => (
           <Card key={product.id}>
@@ -30,12 +35,17 @@ const ProductsPage = () => {
               <CardDescription>{product.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center items-center">
-              <Image  src={product.imageUrl} width={300} height={200} alt="image" />
+              <Image
+                src={product.imageUrl}
+                width={300}
+                height={200}
+                alt="image"
+              />
             </CardContent>
             <CardFooter>
               <div className="flex justify-end items-center gap-4 w-full">
-                <Button variant={"outline"}>Add to Card</Button>
-                <Button variant={"default"}>Buy Now</Button>
+                <Button variant={"outline"}>Detail</Button>
+                <Button variant={"destructive"}>Delete</Button>
               </div>
             </CardFooter>
           </Card>
