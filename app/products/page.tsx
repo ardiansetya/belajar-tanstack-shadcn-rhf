@@ -1,5 +1,6 @@
 "use client";
 
+import AlertDelete from "@/components/alert-delete";
 import ModalAddProduct from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useDeleteProduct, useProducts } from "@/hooks/useProducts";
+import {  useProducts } from "@/hooks/useProducts";
 import { Product } from "@/types/products";
 import Image from "next/image";
 
@@ -18,17 +19,13 @@ const ProductsPage = () => {
   const { data: productsData, isLoading, isError } = useProducts();
   console.log(productsData);
 
-  const mutation = useDeleteProduct();
-
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
 
   return (
     <section className="">
       <div className="flex justify-end items-center my-4">
-   
-          <ModalAddProduct/>
-       
+        <ModalAddProduct />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {productsData?.map((product: Product) => (
@@ -48,7 +45,7 @@ const ProductsPage = () => {
             <CardFooter>
               <div className="flex justify-end items-center gap-4 w-full">
                 <Button variant={"outline"}>Detail</Button>
-                <Button onClick={() => mutation.mutate(product.id)} variant={"destructive"}>Delete</Button>
+               <AlertDelete productId={product.id} />
               </div>
             </CardFooter>
           </Card>

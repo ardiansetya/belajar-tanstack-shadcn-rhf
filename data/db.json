@@ -1,15 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Kopi americano",
-      "description": "Kopi americano premium dengan cita rasa khas.",
-      "price": 50000,
-      "stock": 100,
-      "category": "Minuman",
-      "imageUrl": "https://plus.unsplash.com/premium_photo-1669261713035-b0dfd9572b0a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YW1lcmljYW5vfGVufDB8fDB8fHww"
-    },
-    {
       "id": "2",
       "name": "Teh Hijau",
       "description": "Teh hijau alami menyehatkan tubuh.",

@@ -8,15 +8,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useCreateProduct } from "@/hooks/useProducts";
 import { CreateProductInput, createProductSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
-import { useCreateProduct } from "@/hooks/useProducts";
+import { useState } from "react";
 
 const ModalAddProduct = () => {
+
+  const [open, setOpen] = useState(false);
+
   const form = useForm<CreateProductInput>({
     resolver: zodResolver(createProductSchema),
   });
@@ -25,11 +29,12 @@ const ModalAddProduct = () => {
 
   const onSubmit = (productDataValues: CreateProductInput) => {
     mutation.mutate(productDataValues);
+    setOpen(false);
     form.reset();
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Add Product</Button>
       </DialogTrigger>
@@ -89,7 +94,9 @@ const ModalAddProduct = () => {
                       {...field}
                       type="number"
                       value={field.value}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                      onChange={(e) =>
+                        field.onChange(parseFloat(e.target.value))
+                      }
                     />
                   </FormControl>
                   <p className="text-sm text-red-400">
@@ -140,7 +147,7 @@ const ModalAddProduct = () => {
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button type="submit">Create</Button>
+                <Button type="submit">Create</Button>
             </DialogFooter>
           </form>
         </Form>

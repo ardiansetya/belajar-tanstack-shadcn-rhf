@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TanstackProvider from "@/components/providers/queryclient-provider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,8 @@ export default function RootLayout({
 }>) {
 
   return (
+    <ClerkProvider>
+
     <TanstackProvider>
       <html lang="en" suppressHydrationWarning>
         <body
@@ -45,5 +48,6 @@ export default function RootLayout({
         </body>
       </html>
     </TanstackProvider>
+              </ClerkProvider>
   );
 }
