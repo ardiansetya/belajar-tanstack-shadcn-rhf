@@ -14,14 +14,10 @@ import {
 import {  useProducts } from "@/hooks/useProducts";
 import { Product } from "@/types/products";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const ProductsPage = () => {
-  const { data: productsData, isLoading, isError } = useProducts();
-  console.log(productsData);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error...</div>;
-
+  const { data: productsData, isLoading } = useProducts();
   return (
     <section className="">
       <div className="flex justify-end items-center my-4">

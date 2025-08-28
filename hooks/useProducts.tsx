@@ -4,6 +4,7 @@ import { api } from "@/lib/axios";
 import { CreateProductInput } from "@/lib/validation";
 import { Product } from "@/types/products";
 import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {toast} from "sonner";
 
 const fetchAllProducts = async () => {
   try {
@@ -51,6 +52,12 @@ export const useCreateProduct = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
+      
+      toast.success("Product has been created", {
+        description: "Sunday, December 03, 2023 at 9:00 AM",
+        className: "bg-green-100 text-green-800",
+      });
+
       console.log("Product created successfully");
     },
     onError: () => {
@@ -68,6 +75,10 @@ export const useDeleteProduct = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
+      toast.info("Product has been deleted", {
+        description: "Sunday, December 03, 2023 at 9:00 AM",
+        className: "bg-red-100 text-red-800",
+      });
       console.log("Product deleted successfully");
     },
     onError: () => {
