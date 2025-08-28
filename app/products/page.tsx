@@ -1,5 +1,6 @@
 "use client";
 
+import ModalAddProduct from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,9 +24,9 @@ const ProductsPage = () => {
   return (
     <section className="">
       <div className="flex justify-end items-center my-4">
-        <Button variant={"outline"}>
-          Add Product
-        </Button>
+   
+          <ModalAddProduct/>
+       
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {productsData?.map((product: Product) => (

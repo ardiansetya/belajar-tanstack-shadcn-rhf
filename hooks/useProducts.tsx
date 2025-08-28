@@ -3,7 +3,7 @@
 import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchProducts = async () => {
+const fetchAllProducts = async () => {
   try {
     const response = await api.get("/products");
     return response.data;
@@ -15,6 +15,6 @@ const fetchProducts = async () => {
 export const useProducts = () => {
   return useQuery({
     queryKey: ["products"],
-    queryFn: fetchProducts,
+    queryFn: fetchAllProducts,
   });
 };
