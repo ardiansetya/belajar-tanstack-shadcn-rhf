@@ -14,14 +14,18 @@ import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
+import { useCreateProduct } from "@/hooks/useProducts";
 
 const ModalAddProduct = () => {
   const form = useForm<CreateProductInput>({
     resolver: zodResolver(createProductSchema),
   });
 
+  const mutation = useCreateProduct();
+
   const onSubmit = (productDataValues: CreateProductInput) => {
-    console.log("form submitted:", productDataValues);
+    mutation.mutate(productDataValues);
+    form.reset();
   };
 
   return (
