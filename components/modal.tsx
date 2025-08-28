@@ -17,7 +17,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { useState } from "react";
 
-const ModalAddProduct = () => {
+const ModalAddProduct = ({isLoading}: {isLoading:boolean}) => {
 
   const [open, setOpen] = useState(false);
 
@@ -147,7 +147,7 @@ const ModalAddProduct = () => {
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-                <Button type="submit">Create</Button>
+                <Button type="submit">{isLoading ? "loading..." : "Create"}</Button>
             </DialogFooter>
           </form>
         </Form>
