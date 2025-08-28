@@ -23,6 +23,15 @@ const createProduct = async (productDataValues: Product) => {
   }
 };
 
+const deleteProduct = async (productId: number) => {
+  try {
+    const response = await api.delete(`/products/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 
 export const useProducts = () => {
@@ -46,6 +55,23 @@ export const useCreateProduct = () => {
     },
     onError: () => {
       console.log("Error creating product");
+    }
+  });
+}
+
+export const useDeleteProduct = () => {
+
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (productId: number) => deleteProduct(productId),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      console.log("Product deleted successfully");
+    },
+    onError: () => {
+      console.log("Error deleting product");
     }
   });
 }

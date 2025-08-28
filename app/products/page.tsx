@@ -10,13 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useProducts } from "@/hooks/useProducts";
+import { useDeleteProduct, useProducts } from "@/hooks/useProducts";
 import { Product } from "@/types/products";
 import Image from "next/image";
 
 const ProductsPage = () => {
   const { data: productsData, isLoading, isError } = useProducts();
   console.log(productsData);
+
+  const mutation = useDeleteProduct();
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
@@ -46,7 +48,7 @@ const ProductsPage = () => {
             <CardFooter>
               <div className="flex justify-end items-center gap-4 w-full">
                 <Button variant={"outline"}>Detail</Button>
-                <Button variant={"destructive"}>Delete</Button>
+                <Button onClick={() => mutation.mutate(product.id)} variant={"destructive"}>Delete</Button>
               </div>
             </CardFooter>
           </Card>
